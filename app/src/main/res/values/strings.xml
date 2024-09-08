@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Wishes (Compose)</string>
+
+    <string name="selection_mode">Выберите режим</string>
+    <string name="day_wish_generator">Дневное пожелание</string>
+    <string name="night_wish_generator_mode">Ночное пожелание</string>
+    <string name="emoji_generator">Генератор эмоджи</string>
+    <string name="developers">Разработчики</string>
+
+    <string name="back">Назад</string>
+
+    <string name="number_of_emojis">Количество эмоджи</string>
+    <string name="min_and_max_hint">1 – 2000</string>
+    <string name="generate">Сгенерировать</string>
+    <string name="refresh_button_text">Обновить</string>
+
+    <string name="developer">Разработчик</string>
+    <string name="ImmortalIdiot"><a href="ImmortalIdiot">ImmortalIdiot</a></string>
+    <string name="designer">Дизайнер</string>
+    <string name="kipish_080"><a href="kipish_080">kipish_080</a></string>
+
+    <string name="emojis_copied_hint">Эмоджи скопированы в буфер обмена</string>
+    <string name="wish_copied_hint">Пожелание скопировано в буфер обмена</string>
 </resources>
