@@ -5,7 +5,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 data class Dimensions(
-    val roundedCorners: Dp = 8.dp
+    val roundedCorners: Dp = 8.dp,
+    val maxWidthTextField: Dp = 100.dp
 )
 
 data class DimensionsTest(
