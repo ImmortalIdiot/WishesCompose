@@ -15,7 +15,7 @@ val ButtonEnd = Color(0xFF8B48CC)
 
 val ButtonBackground = Color(0xFF8A34DD)
 
-val BackgroundEnd = Color(0xFF234CB8)
 val BackgroundStart = Color(0xFF0A1330)
+val BackgroundEnd = Color(0xFF234CB8)
 
 val HintColor = Color(0xFF929292)
