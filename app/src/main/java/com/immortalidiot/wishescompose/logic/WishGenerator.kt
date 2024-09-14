@@ -20,14 +20,14 @@ class WishGenerator {
         if (from > until) { random.nextInt(from, until + 1) }
         else { 0 }
 
-    fun getRandomDayWish() : String {
+    fun generateDayWish() : String {
         val chance = getRandomIntegerValue()
         val wish = getRandomElement(dayList)
         return if (chance < 140) { wish + ", " + getRandomElement(compliments) }
         else { wish }
     }
 
-    fun getRandomNightWish() : String {
+    fun generateNightWish() : String {
         var chance = getRandomIntegerValue()
         val nightWish: String = if (chance > 135) {
             "Споки ноки нежно в щёки"
