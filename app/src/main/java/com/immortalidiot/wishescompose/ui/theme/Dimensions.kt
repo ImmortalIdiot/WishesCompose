@@ -2,7 +2,9 @@ package com.immortalidiot.wishescompose.ui.theme
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 data class Dimensions(
     val roundedCorners: Dp = 8.dp,
@@ -14,7 +16,11 @@ data class Dimensions(
     val smallWidthButton: Dp = 216.dp,
 
     val verticalSmallPadding: Dp = 24.dp,
-    val verticalBigPadding: Dp = 80.dp
+    val verticalNormalPadding: Dp = 48.dp,
+    val verticalBigPadding: Dp = 80.dp,
+
+    val developerTypeTextSize: TextUnit = 28.sp,
+    val developerTextSize: TextUnit = 24.sp
 )
 
 data class DimensionsTest(
