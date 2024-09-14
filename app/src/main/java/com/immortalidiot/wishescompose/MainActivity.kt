@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.immortalidiot.wishescompose.navigation.main.MainScreenFlow
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
 import com.immortalidiot.wishescompose.ui.theme.WishesComposeTheme
@@ -28,6 +30,8 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
+            val navHostController = rememberNavController()
+
             Box(
                 modifier = Modifier
                     .background(
@@ -41,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Greeting("Android")
+                MainScreenFlow(navHostController = navHostController)
             }
         }
     }
