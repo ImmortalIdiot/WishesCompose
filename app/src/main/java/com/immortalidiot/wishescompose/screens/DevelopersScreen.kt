@@ -1,6 +1,7 @@
 package com.immortalidiot.wishescompose.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,13 +37,11 @@ fun DevelopersScreen(
         fontSize = dimensions.developerTextSize
     )
 
-    Column(
+    Box(
         modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -69,7 +68,9 @@ fun DevelopersScreen(
             )
         }
         PrimaryButton(
-            modifier = modifier.padding(bottom = dimensions.verticalBigPadding),
+            modifier = modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = dimensions.verticalBigPadding),
             maxHeight = dimensions.heightButton,
             maxWidth = dimensions.widthBackButton,
             text = stringResource(R.string.back),
