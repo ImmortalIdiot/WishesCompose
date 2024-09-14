@@ -1,4 +1,4 @@
-package com.immortalidiot.wishescompose.navigation
+package com.immortalidiot.wishescompose.navigation.main
 
 import androidx.compose.runtime.Immutable
 
