@@ -7,8 +7,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.immortalidiot.wishescompose.navigation.main.mainScreenFlow
 
+@Deprecated(
+    message = "Unnecessary flow",
+    replaceWith =  ReplaceWith("Replace with the MainScreenFlow")
+)
 @Composable
 fun WishesScreenFLow(
     paddingValues: PaddingValues,
@@ -19,11 +22,6 @@ fun WishesScreenFLow(
         startDestination = WishesScreen.MainScreenFlow.route,
         modifier = Modifier.padding(paddingValues = paddingValues)
     ) {
-        mainScreenFlow(
-            navHostController = navHostController
-        ) {
-            // invisible nav bar
-        }
+
     }
 }
-
