@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.immortalidiot.wishescompose.R
+import com.immortalidiot.wishescompose.navigation.main.MainScreen
 import com.immortalidiot.wishescompose.ui.components.PrimaryButton
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
 import com.immortalidiot.wishescompose.ui.theme.modeHeaderText
@@ -78,7 +79,12 @@ fun ModeSelectionScreen(
             maxWidth = dimension.smallWidthButton,
             text = stringResource(R.string.developers),
             onClick = {
-                // TODO: move to developers
+                navHostController.navigate(MainScreen.DevelopersScreen.route) {
+                    popUpTo(0) {
+                        inclusive = false
+                        saveState = true
+                    }
+                }
             }
         )
     }
