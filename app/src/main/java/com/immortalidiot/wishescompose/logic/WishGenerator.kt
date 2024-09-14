@@ -3,20 +3,20 @@ package com.immortalidiot.wishescompose.logic
 import kotlin.random.Random
 
 class WishGenerator {
-    private val dayList: List<String> = listOf("Доброе утро",
+    val dayList: List<String> = listOf("Доброе утро",
         "Доброе утречко", "С добрым утречком", "С добрым утром")
 
-    private val nightList: List<String> = listOf("Споки ноки",
+    val nightList: List<String> = listOf("Споки ноки",
         "Спокойной ночи", "Спокойной ночки", "Сладких снов")
 
-    private val compliments = listOf("моя принцесса", "моя зайка", "моё солнышко", "моя крошка",
+    val compliments = listOf("моя принцесса", "моя зайка", "моё солнышко", "моя крошка",
         "моя сладкая", "моя красавица", "моя красотка")
 
     private val random: Random = Random
 
     private fun getRandomElement(list: List<String>) : String = list[random.nextInt(list.size)]
 
-    private fun getRandomIntegerValue(from: Int = 0, until: Int = 150) =
+    fun getRandomIntegerValue(from: Int = 0, until: Int = 150) =
         if (from > until) { random.nextInt(from, until + 1) }
         else { 0 }
 
