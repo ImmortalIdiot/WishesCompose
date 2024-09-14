@@ -1,5 +1,7 @@
 package com.immortalidiot.wishescompose.screens
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
@@ -24,6 +27,11 @@ fun ModeSelectionScreen(
     modifier: Modifier = Modifier,
 ) {
     val dimension = LocalDimensions.current
+    val context = LocalContext.current
+
+    BackHandler {
+        (context as Activity).moveTaskToBack(true)
+    }
 
     Column(
         modifier = modifier.fillMaxSize().padding(vertical = dimension.verticalBigPadding),
@@ -80,10 +88,11 @@ fun ModeSelectionScreen(
             text = stringResource(R.string.developers),
             onClick = {
                 navHostController.navigate(MainScreen.DevelopersScreen.route) {
-                    popUpTo(0) {
+                    popUpTo(MainScreen.DevelopersScreen.route) {
                         inclusive = false
-                        saveState = true
                     }
+                    launchSingleTop = true
+                    restoreState = true
                 }
             }
         )
