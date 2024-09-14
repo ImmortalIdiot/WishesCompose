@@ -30,9 +30,9 @@ class WishGenerator {
     fun generateNightWish() : String {
         var chance = getRandomIntegerValue()
         val nightWish: String = if (chance > 135) {
-            "Споки ноки нежно в щёки"
-        } else if (chance > 130) {
             "Споки ноки в обе щёки"
+        } else if (chance > 130) {
+            "Споки ноки нежно щёки"
         } else {
             getRandomElement(nightList)
         }
