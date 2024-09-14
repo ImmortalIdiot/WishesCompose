@@ -1,4 +1,4 @@
-package com.immortalidiot.wishescompose.screens
+package com.immortalidiot.wishescompose.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

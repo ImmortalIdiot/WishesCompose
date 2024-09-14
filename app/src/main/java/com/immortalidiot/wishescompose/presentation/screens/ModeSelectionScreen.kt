@@ -1,4 +1,4 @@
-package com.immortalidiot.wishescompose.screens
+package com.immortalidiot.wishescompose.presentation.screens
 
 import android.app.Activity
 import androidx.activity.compose.BackHandler

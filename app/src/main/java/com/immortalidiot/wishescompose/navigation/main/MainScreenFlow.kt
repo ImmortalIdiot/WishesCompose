@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.immortalidiot.wishescompose.screens.DevelopersScreen
-import com.immortalidiot.wishescompose.screens.ModeSelectionScreen
+import com.immortalidiot.wishescompose.presentation.screens.DevelopersScreen
+import com.immortalidiot.wishescompose.presentation.screens.ModeSelectionScreen
 
 @Composable
 fun MainScreenFlow(
