@@ -16,7 +16,7 @@ class WishGenerator {
 
     private fun getRandomElement(list: List<String>) : String = list[random.nextInt(list.size)]
 
-    fun getRandomIntegerValue(from: Int = 0, until: Int = 150) =
+    private fun getRandomIntegerValue(from: Int = 0, until: Int = 150) =
         if (until > from) { random.nextInt(from, until + 1) }
         else { 0 }
 
