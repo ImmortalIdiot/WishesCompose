@@ -6,25 +6,22 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.immortalidiot.wishescompose.screens.ModeSelectionScreen
 
 @Composable
 fun MainScreenFlow(
-    navHostController: NavHostController = rememberNavController(),
-    screenName: (String) -> Unit
+    navHostController: NavHostController,
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = MainScreen.ModeSelectionScreen.route,
-        route = MainScreen.ModeSelectionScreen.route
+        startDestination = MainScreen.ModeSelectionScreen.route
     ) {
         composable(
             route = MainScreen.ModeSelectionScreen.route,
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            // TODO: add the mode selection screen
-            screenName("Mode selection")
+            ModeSelectionScreen(navHostController = navHostController)
         }
 
         composable(
@@ -33,7 +30,6 @@ fun MainScreenFlow(
             exitTransition = { fadeOut() }
         ) {
             // TODO: add the emoji generator screen
-            screenName("Emoji generator")
         }
 
         composable(
@@ -42,7 +38,6 @@ fun MainScreenFlow(
             exitTransition = { fadeOut() }
         ) {
             // TODO: add the day wish generator screen
-            screenName("Day wish generator")
         }
 
         composable(
@@ -51,7 +46,6 @@ fun MainScreenFlow(
             exitTransition = { fadeOut() }
         ) {
             // TODO: add the night wish generator screen
-            screenName("Night wish generator")
         }
 
         composable(
@@ -60,7 +54,6 @@ fun MainScreenFlow(
             exitTransition = { fadeOut() }
         ) {
             // TODO: add the developers screen
-            screenName("Developers")
         }
     }
 }
