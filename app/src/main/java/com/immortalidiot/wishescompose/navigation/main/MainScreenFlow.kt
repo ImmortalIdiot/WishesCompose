@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.immortalidiot.wishescompose.screens.DevelopersScreen
 import com.immortalidiot.wishescompose.screens.ModeSelectionScreen
 
 @Composable
@@ -53,7 +54,7 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            // TODO: add the developers screen
+            DevelopersScreen(navHostController = navHostController)
         }
     }
 }
