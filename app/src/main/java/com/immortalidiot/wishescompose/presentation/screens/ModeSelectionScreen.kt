@@ -18,6 +18,7 @@ import androidx.navigation.NavHostController
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.navigation.main.MainScreen
 import com.immortalidiot.wishescompose.ui.components.PrimaryButton
+import com.immortalidiot.wishescompose.ui.theme.Dimensions
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
 import com.immortalidiot.wishescompose.ui.theme.modeHeaderText
 
@@ -26,15 +27,15 @@ fun ModeSelectionScreen(
     navHostController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-    val dimension = LocalDimensions.current
+    val dimensions = LocalDimensions.current
     val context = LocalContext.current
 
-    BackHandler {
-        (context as Activity).moveTaskToBack(true)
-    }
+    BackHandler { (context as Activity).moveTaskToBack(true) }
 
     Column(
-        modifier = modifier.fillMaxSize().padding(vertical = dimension.verticalBigPadding),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = dimensions.verticalBigPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -48,59 +49,57 @@ fun ModeSelectionScreen(
         )
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(dimension.verticalSmallPadding)
+            verticalArrangement = Arrangement.spacedBy(dimensions.verticalSmallPadding)
         ) {
-            PrimaryButton(
-                modifier = modifier,
-                maxWidth = dimension.bigWidthButton,
-                maxHeight = dimension.heightButton,
-                text = stringResource(R.string.emoji_generator),
-                onClick = {
-                    // TODO: move to emoji generator
-                }
-            )
-
-            PrimaryButton(
-                modifier = modifier,
-                maxWidth = dimension.bigWidthButton,
-                maxHeight = dimension.heightButton,
-                text = stringResource(R.string.day_wish_generator),
-                onClick = {
-                    navHostController.navigate(MainScreen.DayWishGeneratorScreen.route) {
-                        popUpTo(MainScreen.DayWishGeneratorScreen.route) {
-                            inclusive = false
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                }
-            )
-
-            PrimaryButton(
-                modifier = modifier,
-                maxWidth = dimension.bigWidthButton,
-                maxHeight = dimension.heightButton,
-                text = stringResource(R.string.night_wish_generator_mode),
-                onClick = {
-                    // TODO: move to night wish generator
-                }
-            )
-        }
-
-        PrimaryButton(
-            modifier = modifier,
-            maxHeight = dimension.heightButton,
-            maxWidth = dimension.smallWidthButton,
-            text = stringResource(R.string.developers),
-            onClick = {
-                navHostController.navigate(MainScreen.DevelopersScreen.route) {
-                    popUpTo(MainScreen.DevelopersScreen.route) {
-                        inclusive = false
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                }
+            listOf(
+                R.string.emoji_generator to MainScreen.EmojiGeneratorScreen.route,
+                R.string.day_wish_generator to MainScreen.DayWishGeneratorScreen.route,
+                R.string.night_wish_generator_mode to MainScreen.NightWishGeneratorScreen.route
+            ).forEach { (resourceId, route) ->
+                NavigateButton(
+                    modifier = modifier,
+                    resourceId = resourceId,
+                    route = route,
+                    navHostController = navHostController,
+                    dimensions = dimensions
+                )
             }
+        }
+        NavigateButton(
+            resourceId = R.string.developers,
+            route = MainScreen.DevelopersScreen.route,
+            navHostController = navHostController,
+            modifier = modifier,
+            dimensions = dimensions,
+            isSmall = true
         )
     }
+}
+
+@Composable
+fun NavigateButton(
+    resourceId: Int,
+    route: String,
+    navHostController: NavHostController,
+    modifier: Modifier = Modifier,
+    dimensions: Dimensions = LocalDimensions.current,
+    isSmall: Boolean = false
+) {
+    PrimaryButton(
+        modifier = modifier,
+        maxWidth = if (isSmall) {
+            dimensions.smallWidthButton
+        } else {
+            dimensions.bigWidthButton
+        },
+        maxHeight = dimensions.heightButton,
+        text = stringResource(resourceId),
+        onClick = {
+            navHostController.navigate(route) {
+                popUpTo(route) { inclusive = false }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+    )
 }
