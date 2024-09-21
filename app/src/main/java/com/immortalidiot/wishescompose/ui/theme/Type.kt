@@ -51,5 +51,5 @@ private val lightTomorrowStyle = TextStyle(
 
 val modeHeaderText = mediumArchivoStyle.copy(fontSize = 30.sp)
 val buttonText = semiBoldArchivoStyle.copy(fontSize = 24.sp)
-val headerText = lightArchivoStyle.copy(fontSize = 22.sp)
+val headerText = lightArchivoStyle.copy(fontSize = 28.sp)
 val hintText = lightTomorrowStyle.copy(fontSize = 22.sp)
