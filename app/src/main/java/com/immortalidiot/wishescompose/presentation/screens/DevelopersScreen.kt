@@ -16,9 +16,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.navigation.main.MainScreen
+import com.immortalidiot.wishescompose.ui.components.BackButton
 import com.immortalidiot.wishescompose.ui.components.HeaderText
 import com.immortalidiot.wishescompose.ui.components.HyperlinkedText
-import com.immortalidiot.wishescompose.ui.components.PrimaryButton
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
 import com.immortalidiot.wishescompose.ui.theme.headerText
 
@@ -67,13 +67,10 @@ fun DevelopersScreen(
                 modifier = modifier
             )
         }
-        PrimaryButton(
-            modifier = modifier
+        BackButton(
+            modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = dimensions.verticalBigPadding),
-            maxHeight = dimensions.heightButton,
-            maxWidth = dimensions.widthBackButton,
-            text = stringResource(R.string.back),
             onClick = {
                 navHostController.popBackStack(
                     route = MainScreen.ModeSelectionScreen.route,
