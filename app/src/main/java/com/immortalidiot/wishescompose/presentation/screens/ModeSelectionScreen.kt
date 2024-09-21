@@ -33,7 +33,9 @@ fun ModeSelectionScreen(
     BackHandler { (context as Activity).moveTaskToBack(true) }
 
     Column(
-        modifier = modifier.fillMaxSize().padding(vertical = dimensions.verticalBigPadding),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = dimensions.verticalBigPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -85,7 +87,11 @@ fun NavigateButton(
 ) {
     PrimaryButton(
         modifier = modifier,
-        maxWidth = if (isSmall) dimensions.smallWidthButton else dimensions.bigWidthButton,
+        maxWidth = if (isSmall) {
+            dimensions.smallWidthButton
+        } else {
+            dimensions.bigWidthButton
+        },
         maxHeight = dimensions.heightButton,
         text = stringResource(resourceId),
         onClick = {
