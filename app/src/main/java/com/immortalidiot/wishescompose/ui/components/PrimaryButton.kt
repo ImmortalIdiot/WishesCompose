@@ -81,8 +81,8 @@ fun PrimaryButtonPreview() {
 
     PrimaryButton(
         maxHeight = testDimensions.maxHeightButtonTest,
-        maxWidth = testDimensions.maxWidthButtonTest,
-        text = stringResource(id = R.string.emoji_generator),
+        maxWidth = testDimensions.generateWidthButtonTest,
+        text = stringResource(id = R.string.generate),
         onClick = { /*TODO*/ }
     )
 }
