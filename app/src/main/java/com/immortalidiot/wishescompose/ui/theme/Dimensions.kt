@@ -15,6 +15,7 @@ data class Dimensions(
     val bigWidthButton: Dp = 290.dp,
     val smallWidthButton: Dp = 216.dp,
     val widthBackButton: Dp = 128.dp,
+    val generateWidthButton: Dp = 220.dp,
 
     val verticalSmallPadding: Dp = 24.dp,
     val verticalNormalPadding: Dp = 48.dp,
@@ -27,6 +28,7 @@ data class Dimensions(
 data class DimensionsTest(
     val maxHeightButtonTest: Dp = 54.dp,
     val maxWidthButtonTest: Dp = 128.dp,
+    val generateWidthButtonTest: Dp = 220.dp
 )
 
 val LocalDimensions = compositionLocalOf { Dimensions() }
