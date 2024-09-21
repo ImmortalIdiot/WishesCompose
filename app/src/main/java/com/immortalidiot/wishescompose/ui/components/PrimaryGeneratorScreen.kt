@@ -14,10 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.R
-import com.immortalidiot.wishescompose.navigation.main.MainScreen
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
@@ -25,11 +22,11 @@ import com.immortalidiot.wishescompose.ui.theme.modeHeaderText
 
 @Composable
 fun PrimaryGeneratorScreen(
-    navHostController: NavHostController,
     headerText: String,
     inputValueChange: (String) -> Unit,
     onGenerateClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onBackButton: () -> Unit,
     inputValue: String = ""
 ) {
     val dimensions = LocalDimensions.current
@@ -70,13 +67,7 @@ fun PrimaryGeneratorScreen(
         }
         BackButton(
             modifier = modifier,
-            onClick = {
-                navHostController.popBackStack(
-                    route = MainScreen.ModeSelectionScreen.route,
-                    inclusive = false,
-                    saveState = true
-                )
-            }
+            onClick = onBackButton
         )
     }
 }
@@ -98,10 +89,10 @@ fun PrimaryGeneratorScreenPreview() {
         contentAlignment = Alignment.Center
     ) {
         PrimaryGeneratorScreen(
-            navHostController = rememberNavController(),
             headerText = "Заголовок",
             inputValueChange = {},
             onGenerateClick = {},
+            onBackButton = {}
         )
     }
 }
