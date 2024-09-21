@@ -56,7 +56,13 @@ fun ModeSelectionScreen(
                 maxHeight = dimension.heightButton,
                 text = stringResource(R.string.emoji_generator),
                 onClick = {
-                    // TODO: move to emoji generator
+                    navHostController.navigate(MainScreen.EmojiGeneratorScreen.route) {
+                        popUpTo(MainScreen.EmojiGeneratorScreen.route) {
+                            inclusive = false
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
 

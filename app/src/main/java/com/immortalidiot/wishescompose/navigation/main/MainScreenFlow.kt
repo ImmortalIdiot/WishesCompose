@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.immortalidiot.wishescompose.presentation.screens.DayWishGeneratorScreen
 import com.immortalidiot.wishescompose.presentation.screens.DevelopersScreen
+import com.immortalidiot.wishescompose.presentation.screens.EmojiGeneratorScreen
 import com.immortalidiot.wishescompose.presentation.screens.ModeSelectionScreen
 
 @Composable
@@ -31,7 +32,7 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            // TODO: add the emoji generator screen
+            EmojiGeneratorScreen(navHostController = navHostController)
         }
 
         composable(
