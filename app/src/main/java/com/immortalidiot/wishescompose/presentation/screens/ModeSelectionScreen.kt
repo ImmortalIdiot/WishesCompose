@@ -88,7 +88,13 @@ fun ModeSelectionScreen(
                 maxHeight = dimension.heightButton,
                 text = stringResource(R.string.night_wish_generator_mode),
                 onClick = {
-                    // TODO: move to night wish generator
+                    navHostController.navigate(MainScreen.NightWishGeneratorScreen.route) {
+                        popUpTo(MainScreen.NightWishGeneratorScreen.route) {
+                            inclusive = false
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
         }

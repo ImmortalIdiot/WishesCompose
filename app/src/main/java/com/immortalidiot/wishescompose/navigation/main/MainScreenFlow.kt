@@ -10,6 +10,7 @@ import com.immortalidiot.wishescompose.presentation.screens.DayWishGeneratorScre
 import com.immortalidiot.wishescompose.presentation.screens.DevelopersScreen
 import com.immortalidiot.wishescompose.presentation.screens.EmojiGeneratorScreen
 import com.immortalidiot.wishescompose.presentation.screens.ModeSelectionScreen
+import com.immortalidiot.wishescompose.presentation.screens.NightWishGeneratorScreen
 
 @Composable
 fun MainScreenFlow(
@@ -48,7 +49,7 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            // TODO: add the night wish generator screen
+            NightWishGeneratorScreen(navHostController = navHostController)
         }
 
         composable(
