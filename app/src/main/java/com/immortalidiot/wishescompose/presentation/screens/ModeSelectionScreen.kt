@@ -66,7 +66,13 @@ fun ModeSelectionScreen(
                 maxHeight = dimension.heightButton,
                 text = stringResource(R.string.day_wish_generator),
                 onClick = {
-                    // TODO: move to day wish generator
+                    navHostController.navigate(MainScreen.DayWishGeneratorScreen.route) {
+                        popUpTo(MainScreen.DayWishGeneratorScreen.route) {
+                            inclusive = false
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
 

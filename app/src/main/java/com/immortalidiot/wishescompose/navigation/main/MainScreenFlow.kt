@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.immortalidiot.wishescompose.presentation.screens.DayWishGeneratorScreen
 import com.immortalidiot.wishescompose.presentation.screens.DevelopersScreen
 import com.immortalidiot.wishescompose.presentation.screens.ModeSelectionScreen
 
@@ -38,7 +39,7 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            // TODO: add the day wish generator screen
+            DayWishGeneratorScreen(navHostController = navHostController)
         }
 
         composable(
