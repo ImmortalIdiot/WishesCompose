@@ -33,7 +33,7 @@ fun GeneratorTextField(
 ) {
     val dimensions = LocalDimensions.current
     val keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
-    val inputColor = HintColor
+    val inputColor = if (value.isEmpty()) { HintColor } else { Color.White }
     val colors = TextFieldDefaults.colors(
         focusedContainerColor = Color.Transparent,
         unfocusedContainerColor = Color.Transparent,
