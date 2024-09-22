@@ -1,6 +1,6 @@
 package com.immortalidiot.wishescompose
 
-import com.immortalidiot.wishescompose.logic.EmojiGeneratorImpl
+import com.immortalidiot.wishescompose.logic.impl.EmojiGeneratorImpl
 import org.junit.Test
 
 import org.junit.Assert.*

@@ -1,6 +1,6 @@
 package com.immortalidiot.wishescompose
 
-import com.immortalidiot.wishescompose.logic.WishGeneratorImpl
+import com.immortalidiot.wishescompose.logic.impl.WishGeneratorImpl
 
 import org.junit.Assert.*
 import org.junit.Test

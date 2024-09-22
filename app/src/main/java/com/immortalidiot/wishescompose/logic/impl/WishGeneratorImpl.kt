@@ -1,4 +1,4 @@
-package com.immortalidiot.wishescompose.logic
+package com.immortalidiot.wishescompose.logic.impl
 
 import kotlin.random.Random
 
