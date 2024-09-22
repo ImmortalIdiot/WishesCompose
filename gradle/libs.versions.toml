@@ -10,8 +10,10 @@ activityCompose = "1.9.1"
 composeBom = "2023.08.00"
 navigation = "2.8.0"
 hilt = "2.51.1"
+coroutines-test = "1.7.3"
 
 [libraries]
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test"}
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"}
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt"}
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.2.0" }

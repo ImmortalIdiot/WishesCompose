@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.coroutines.test)
     implementation(libs.hilt.android)
     implementation(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
