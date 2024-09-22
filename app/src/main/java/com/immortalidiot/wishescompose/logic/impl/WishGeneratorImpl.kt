@@ -1,8 +1,9 @@
 package com.immortalidiot.wishescompose.logic.impl
 
+import com.immortalidiot.wishescompose.logic.WishGenerator
 import kotlin.random.Random
 
-class WishGeneratorImpl {
+class WishGeneratorImpl : WishGenerator {
     val dayList: List<String> = listOf("Доброе утро",
         "Доброе утречко", "С добрым утречком", "С добрым утром")
 
@@ -20,14 +21,14 @@ class WishGeneratorImpl {
         if (until > from) { random.nextInt(from, until + 1) }
         else { 0 }
 
-    fun generateDayWish() : String {
+    override suspend fun generateDayWish() : String {
         val chance = getRandomIntegerValue()
         val wish = getRandomElement(dayList)
         return if (chance < 140) { wish + ", " + getRandomElement(compliments) }
         else { wish }
     }
 
-    fun generateNightWish() : String {
+    override suspend fun generateNightWish() : String {
         var chance = getRandomIntegerValue()
         val nightWish: String = if (chance > 135) {
             "Споки ноки в обе щёки"
