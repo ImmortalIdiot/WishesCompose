@@ -2,7 +2,7 @@ package com.immortalidiot.wishescompose.logic
 
 import kotlin.random.Random
 
-class EmojiGenerator {
+class EmojiGeneratorImpl {
    private val emojis: List<String> = listOf("♥", "💘", "💝", "💖", "💗", "💓", "💞", "💕",
        "❣", "❤", "😻", "🥰", "😍", "😘")
 

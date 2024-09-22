@@ -2,7 +2,7 @@ package com.immortalidiot.wishescompose.logic
 
 import kotlin.random.Random
 
-class WishGenerator {
+class WishGeneratorImpl {
     val dayList: List<String> = listOf("Доброе утро",
         "Доброе утречко", "С добрым утречком", "С добрым утром")
 
