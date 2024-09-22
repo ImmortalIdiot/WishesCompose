@@ -15,7 +15,9 @@ import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.navigation.main.MainScreenFlow
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(
