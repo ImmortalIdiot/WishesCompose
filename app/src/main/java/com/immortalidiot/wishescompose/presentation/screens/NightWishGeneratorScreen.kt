@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.R
-import com.immortalidiot.wishescompose.navigation.main.MainScreen
+import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart

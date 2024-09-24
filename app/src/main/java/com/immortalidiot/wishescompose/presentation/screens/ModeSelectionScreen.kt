@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.immortalidiot.wishescompose.R
-import com.immortalidiot.wishescompose.navigation.main.MainScreen
+import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.ui.components.PrimaryButton
 import com.immortalidiot.wishescompose.ui.theme.Dimensions
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
