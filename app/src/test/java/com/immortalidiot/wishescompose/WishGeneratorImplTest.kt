@@ -22,6 +22,11 @@ class WishGeneratorImplTest {
         val wish = wishGeneratorImpl.generateNightWish()
         val validNightWish = wishGeneratorImpl.nightList.any { wish.contains(it) } &&
                 wishGeneratorImpl.compliments.any { wish.contains(it) }
-        assertTrue(validNightWish)
+
+        assertTrue(
+            validNightWish ||
+            wish == "Споки ноки в обе щёки" ||
+            wish == "Споки ноки нежно щёки"
+        )
     }
 }
