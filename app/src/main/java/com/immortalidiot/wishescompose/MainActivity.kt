@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.navigation.compose.rememberNavController
-import com.immortalidiot.wishescompose.navigation.main.MainScreenFlow
+import com.immortalidiot.wishescompose.navigation.MainScreenFlow
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
 import dagger.hilt.android.AndroidEntryPoint
