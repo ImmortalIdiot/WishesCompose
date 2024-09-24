@@ -9,6 +9,7 @@ junit = "4.13.2"
 ext-junit = "1.2.1"
 espresso-core = "3.6.1"
 hilt = "2.51.1"
+coroutines-test = "1.7.3"
 
 [libraries]
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -30,6 +31,7 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
