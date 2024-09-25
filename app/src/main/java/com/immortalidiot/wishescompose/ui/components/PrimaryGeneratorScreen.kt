@@ -1,16 +1,23 @@
 package com.immortalidiot.wishescompose.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,11 +37,21 @@ fun PrimaryGeneratorScreen(
     inputValue: String = ""
 ) {
     val dimensions = LocalDimensions.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
 
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(vertical = dimensions.verticalBigPadding),
+            .padding(vertical = dimensions.verticalBigPadding)
+            .pointerInput(Unit) {
+                detectTapGestures {
+                    hideKeyboardAndClearFocus(
+                        keyboardController = keyboardController,
+                        focusManager = focusManager
+                    )
+                }
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -55,7 +72,15 @@ fun PrimaryGeneratorScreen(
             )
             GeneratorTextField(
                 value = inputValue,
-                onValueChange = inputValueChange
+                onValueChange = inputValueChange,
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        hideKeyboardAndClearFocus(
+                            keyboardController = keyboardController,
+                            focusManager = focusManager
+                        )
+                    }
+                )
             )
             PrimaryButton(
                 modifier = modifier,
@@ -70,6 +95,14 @@ fun PrimaryGeneratorScreen(
             onClick = onBackButton
         )
     }
+}
+
+private fun hideKeyboardAndClearFocus(
+    keyboardController: SoftwareKeyboardController?,
+    focusManager: FocusManager
+) {
+    keyboardController?.hide()
+    focusManager.clearFocus()
 }
 
 @Preview
