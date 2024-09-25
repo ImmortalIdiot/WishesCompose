@@ -38,7 +38,7 @@ fun NightWishGeneratorScreen(
     if (state is GeneratorViewModel.State.Success) {
         CustomToast(
             context = context,
-            toastText = stringResource(R.string.emojis_copied_hint)
+            toastText = stringResource(R.string.wish_copied_hint)
         )
 
         LaunchedEffect(Unit) { screenViewModel.resetState() }
