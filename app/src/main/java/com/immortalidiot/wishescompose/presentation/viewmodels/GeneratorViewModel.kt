@@ -51,6 +51,7 @@ class GeneratorViewModel @Inject constructor(
                 context = context,
                 copiedMessage = emojiGenerator.generate(emojis)
             )
+            mutableStateFlow.update { State.Success }
         }
     }
 
@@ -60,6 +61,7 @@ class GeneratorViewModel @Inject constructor(
                 context = context,
                 copiedMessage = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
             )
+            mutableStateFlow.update { State.Success }
         }
     }
 
@@ -69,6 +71,7 @@ class GeneratorViewModel @Inject constructor(
                 context = context,
                 copiedMessage = wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
             )
+            mutableStateFlow.update { State.Success }
         }
     }
 }
