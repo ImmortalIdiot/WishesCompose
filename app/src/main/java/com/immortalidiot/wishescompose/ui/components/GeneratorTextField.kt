@@ -53,9 +53,12 @@ fun GeneratorTextField(
     TextField(
         value = value,
         onValueChange = { input ->
-            val number = input.toIntOrNull()
-            if (number != null && number in minNumber..maxNumber) {
-                onValueChange(input)
+            if (input.isEmpty()) { onValueChange(input) }
+            else {
+                val number = input.toIntOrNull()
+                if (number != null && number in minNumber..maxNumber) {
+                    onValueChange(input)
+                }
             }
         },
         modifier = modifier.width(dimensions.maxWidthTextField),
