@@ -3,6 +3,7 @@ package com.immortalidiot.wishescompose.navigation
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,6 +12,7 @@ import com.immortalidiot.wishescompose.presentation.screens.DevelopersScreen
 import com.immortalidiot.wishescompose.presentation.screens.EmojiGeneratorScreen
 import com.immortalidiot.wishescompose.presentation.screens.ModeSelectionScreen
 import com.immortalidiot.wishescompose.presentation.screens.NightWishGeneratorScreen
+import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewModel
 
 @Composable
 fun MainScreenFlow(
@@ -41,7 +43,12 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            DayWishGeneratorScreen(navHostController = navHostController)
+            val dayWishGeneratorViewModel: GeneratorViewModel = hiltViewModel()
+
+            DayWishGeneratorScreen(
+                screenViewModel = dayWishGeneratorViewModel,
+                navHostController = navHostController
+            )
         }
 
         composable(
