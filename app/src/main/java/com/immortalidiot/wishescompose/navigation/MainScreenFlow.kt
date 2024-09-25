@@ -18,10 +18,13 @@ import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewMode
 fun MainScreenFlow(
     navHostController: NavHostController,
 ) {
+    val screenViewModel: GeneratorViewModel = hiltViewModel()
+
     NavHost(
         navController = navHostController,
         startDestination = MainScreen.ModeSelectionScreen.route
     ) {
+
         composable(
             route = MainScreen.ModeSelectionScreen.route,
             enterTransition = { fadeIn() },
@@ -35,10 +38,8 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            val emojiGeneratorViewModel: GeneratorViewModel = hiltViewModel()
-
             EmojiGeneratorScreen(
-                screenViewModel = emojiGeneratorViewModel,
+                screenViewModel = screenViewModel,
                 navHostController = navHostController
             )
         }
@@ -48,10 +49,8 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            val dayWishGeneratorViewModel: GeneratorViewModel = hiltViewModel()
-
             DayWishGeneratorScreen(
-                screenViewModel = dayWishGeneratorViewModel,
+                screenViewModel = screenViewModel,
                 navHostController = navHostController
             )
         }
@@ -61,7 +60,11 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            NightWishGeneratorScreen(navHostController = navHostController)
+
+            NightWishGeneratorScreen(
+                screenViewModel = screenViewModel,
+                navHostController = navHostController
+            )
         }
 
         composable(
