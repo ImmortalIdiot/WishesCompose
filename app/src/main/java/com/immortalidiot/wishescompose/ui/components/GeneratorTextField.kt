@@ -63,7 +63,8 @@ fun GeneratorTextField(
         },
         colors = colors,
         keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions
+        keyboardActions = keyboardActions,
+        singleLine = true
     )
 }
 
