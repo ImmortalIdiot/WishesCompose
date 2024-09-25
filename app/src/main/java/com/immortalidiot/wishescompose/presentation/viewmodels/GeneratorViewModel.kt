@@ -1,6 +1,7 @@
 package com.immortalidiot.wishescompose.presentation.viewmodels
 
 import android.content.Context
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.immortalidiot.wishescompose.logic.ClipboardCopier
@@ -23,6 +24,16 @@ class GeneratorViewModel @Inject constructor(
     private val clipboardCopier: ClipboardCopier,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
+
+    @Immutable
+    sealed class State {
+        data object Init : State()
+        data object Success : State()
+        data class Error(val message: String) : State()
+    }
+
+    var mutableStateFlow = MutableStateFlow<State>(State.Init)
+        private set
 
     private val _uiState = MutableStateFlow(
         GeneratorModel(emojis = String())
