@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -29,7 +30,8 @@ import com.immortalidiot.wishescompose.ui.theme.hintText
 fun GeneratorTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    value: String = ""
+    value: String = "",
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     val dimensions = LocalDimensions.current
     val keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
@@ -60,7 +62,8 @@ fun GeneratorTextField(
             )
         },
         colors = colors,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions
     )
 }
 
