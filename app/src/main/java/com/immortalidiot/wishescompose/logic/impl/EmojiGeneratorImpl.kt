@@ -1,9 +1,10 @@
 package com.immortalidiot.wishescompose.logic.impl
 
 import com.immortalidiot.wishescompose.logic.EmojiGenerator
+import javax.inject.Inject
 import kotlin.random.Random
 
-class EmojiGeneratorImpl : EmojiGenerator {
+class EmojiGeneratorImpl @Inject constructor() : EmojiGenerator {
    private val emojis: List<String> = listOf("♥", "💘", "💝", "💖", "💗", "💓", "💞", "💕",
        "❣", "❤", "😻", "🥰", "😍", "😘")
 

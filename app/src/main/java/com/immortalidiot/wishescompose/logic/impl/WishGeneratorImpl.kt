@@ -1,9 +1,10 @@
 package com.immortalidiot.wishescompose.logic.impl
 
 import com.immortalidiot.wishescompose.logic.WishGenerator
+import javax.inject.Inject
 import kotlin.random.Random
 
-class WishGeneratorImpl : WishGenerator {
+class WishGeneratorImpl @Inject constructor() : WishGenerator {
     val dayList: List<String> = listOf("Доброе утро",
         "Доброе утречко", "С добрым утречком", "С добрым утром")
 
