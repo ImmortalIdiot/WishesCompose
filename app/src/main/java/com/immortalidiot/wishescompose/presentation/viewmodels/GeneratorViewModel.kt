@@ -25,12 +25,12 @@ class GeneratorViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
-        GeneratorModel(emojis = 0)
+        GeneratorModel(emojis = String())
     )
 
     val uiState: StateFlow<GeneratorModel> = _uiState.asStateFlow()
 
-    fun changeNumberEmojis(emojis: Int) {
+    fun changeNumberEmojis(emojis: String) {
         _uiState.update { uiState.value.copy(emojis = emojis) }
     }
 
