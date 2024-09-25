@@ -35,7 +35,12 @@ fun MainScreenFlow(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() }
         ) {
-            EmojiGeneratorScreen(navHostController = navHostController)
+            val emojiGeneratorViewModel: GeneratorViewModel = hiltViewModel()
+
+            EmojiGeneratorScreen(
+                screenViewModel = emojiGeneratorViewModel,
+                navHostController = navHostController
+            )
         }
 
         composable(
