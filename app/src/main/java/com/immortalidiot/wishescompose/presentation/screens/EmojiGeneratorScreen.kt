@@ -27,6 +27,7 @@ fun EmojiGeneratorScreen(
     navHostController: NavHostController,
     modifier: Modifier = Modifier
 ) {
+    val state by screenViewModel.mutableStateFlow.collectAsState()
     val uiState by screenViewModel.uiState.collectAsState()
 
     PrimaryGeneratorScreen(
