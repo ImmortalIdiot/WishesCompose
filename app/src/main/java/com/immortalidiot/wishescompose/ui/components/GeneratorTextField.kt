@@ -35,6 +35,7 @@ fun GeneratorTextField(
 ) {
     val dimensions = LocalDimensions.current
     val keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
+
     val inputColor = if (value.isEmpty()) { HintColor } else { Color.White }
     val colors = TextFieldDefaults.colors(
         focusedContainerColor = Color.Transparent,
@@ -45,9 +46,18 @@ fun GeneratorTextField(
         unfocusedIndicatorColor = Color.White,
         cursorColor = Color.White
     )
+
+    val minNumber = 1
+    val maxNumber = 2000
+
     TextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = { input ->
+            val number = input.toIntOrNull()
+            if (number != null && number in minNumber..maxNumber) {
+                onValueChange(input)
+            }
+        },
         modifier = modifier.width(dimensions.maxWidthTextField),
         textStyle = hintText.copy(
             color = inputColor,
