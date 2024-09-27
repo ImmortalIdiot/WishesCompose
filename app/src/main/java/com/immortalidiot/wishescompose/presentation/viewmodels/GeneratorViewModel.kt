@@ -59,7 +59,7 @@ class GeneratorViewModel @Inject constructor(
                 )
                 mutableStateFlow.update { State.Success }
             }
-        }
+        } else { updateStateWithError() }
     }
 
     fun generateDayWishAndCopy(emojis: Int) {
@@ -71,7 +71,7 @@ class GeneratorViewModel @Inject constructor(
                 )
                 mutableStateFlow.update { State.Success }
             }
-        }
+        } else { updateStateWithError() }
     }
 
     fun generateNightWishAndCopy(emojis: Int) {
@@ -85,7 +85,7 @@ class GeneratorViewModel @Inject constructor(
                 )
                 mutableStateFlow.update { State.Success }
             }
-        }
+        } else { updateStateWithError() }
     }
 
     private fun isInputValid(emojis: Int): Boolean = isNotEmptyField(emojis.toString())
