@@ -54,40 +54,33 @@ class GeneratorViewModel @Inject constructor(
 
     fun generateEmojisAndCopy(emojis: Int) {
         if (isInputValid(emojis)) {
-            viewModelScope.launch {
-                clipboardCopier.copy(
-                    context = context,
-                    copiedMessage = emojiGenerator.generate(emojis)
-                )
-                updateStateWithSuccess()
-            }
+           copyGeneratedWish {
+               emojiGenerator.generate(emojis)
+           }
         } else { updateStateWithError() }
     }
 
     fun generateDayWishAndCopy(emojis: Int) {
         if (isInputValid(emojis)) {
-            viewModelScope.launch {
-                clipboardCopier.copy(
-                    context = context,
-                    copiedMessage = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
-                )
-                updateStateWithSuccess()
+            copyGeneratedWish {
+                wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
             }
         } else { updateStateWithError() }
     }
 
     fun generateNightWishAndCopy(emojis: Int) {
         if (isInputValid(emojis)) {
-            viewModelScope.launch {
-                clipboardCopier.copy(
-                    context = context,
-                    copiedMessage = wishGenerator.generateNightWish() + emojiGenerator.generate(
-                        emojis
-                    )
-                )
-                updateStateWithSuccess()
+            copyGeneratedWish {
+                wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
             }
         } else { updateStateWithError() }
+    }
+
+    private fun copyGeneratedWish(generateWish: suspend () -> String) {
+        viewModelScope.launch {
+            clipboardCopier.copy(context = context, copiedMessage = generateWish())
+            updateStateWithSuccess()
+        }
     }
 
     private fun isInputValid(emojis: Int): Boolean = isNotEmptyField(emojis.toString())
