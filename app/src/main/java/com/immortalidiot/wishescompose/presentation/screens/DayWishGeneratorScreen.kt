@@ -29,13 +29,21 @@ fun DayWishGeneratorScreen(
 
     val context = LocalContext.current
 
-    if (state is GeneratorViewModel.State.Success) {
-        CustomToast(
-            context = context,
-            toastText = stringResource(R.string.wish_copied_hint)
-        )
+    val delayAfterClicking: Long = 2000
 
-        LaunchedEffect(Unit) { screenViewModel.resetState() }
+    val toastText = when (state) {
+        is GeneratorViewModel.State.Success -> stringResource(R.string.wish_copied_hint)
+        is GeneratorViewModel.State.Error -> (state as GeneratorViewModel.State.Error).message
+        else -> null
+    }
+
+    toastText?.let { message ->
+        CustomToast(context = context, toastText = message)
+
+        LaunchedEffect(Unit) {
+            delay(delayAfterClicking)
+            screenViewModel.resetState()
+        }
     }
 
     PrimaryGeneratorScreen(
