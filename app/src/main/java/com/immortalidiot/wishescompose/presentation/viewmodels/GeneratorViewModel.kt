@@ -87,6 +87,8 @@ class GeneratorViewModel @Inject constructor(
 
     private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
 
+    private fun castStringToInt(string: String): Int = string.toInt()
+
     companion object {
         private const val DEFAULT_ERROR_MESSAGE = "Введите количество эмоджи"
     }
