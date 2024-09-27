@@ -77,5 +77,7 @@ class GeneratorViewModel @Inject constructor(
         }
     }
 
+    private fun isInputValid(emojis: Int): Boolean = isNotEmptyField(emojis.toString())
+
     private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
 }
