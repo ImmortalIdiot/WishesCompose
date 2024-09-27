@@ -77,5 +77,5 @@ class GeneratorViewModel @Inject constructor(
         }
     }
 
-    fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
+    private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
 }
