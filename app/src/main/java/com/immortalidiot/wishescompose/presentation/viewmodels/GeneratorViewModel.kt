@@ -46,6 +46,8 @@ class GeneratorViewModel @Inject constructor(
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 
+    private fun updateStateWithSuccess() = mutableStateFlow.update { State.Success }
+
     fun changeNumberEmojis(emojis: String) {
         _uiState.update { uiState.value.copy(emojis = emojis) }
     }
@@ -57,7 +59,7 @@ class GeneratorViewModel @Inject constructor(
                     context = context,
                     copiedMessage = emojiGenerator.generate(emojis)
                 )
-                mutableStateFlow.update { State.Success }
+                updateStateWithSuccess()
             }
         } else { updateStateWithError() }
     }
@@ -69,7 +71,7 @@ class GeneratorViewModel @Inject constructor(
                     context = context,
                     copiedMessage = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
                 )
-                mutableStateFlow.update { State.Success }
+                updateStateWithSuccess()
             }
         } else { updateStateWithError() }
     }
@@ -83,7 +85,7 @@ class GeneratorViewModel @Inject constructor(
                         emojis
                     )
                 )
-                mutableStateFlow.update { State.Success }
+                updateStateWithSuccess()
             }
         } else { updateStateWithError() }
     }
