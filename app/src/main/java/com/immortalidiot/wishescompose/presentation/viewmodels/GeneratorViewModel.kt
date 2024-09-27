@@ -76,4 +76,6 @@ class GeneratorViewModel @Inject constructor(
             mutableStateFlow.update { State.Success }
         }
     }
+
+    fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
 }
