@@ -43,6 +43,9 @@ class GeneratorViewModel @Inject constructor(
 
     fun resetState() = mutableStateFlow.update { State.Init }
 
+    private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
+        mutableStateFlow.update { State.Error(errorMessage) }
+
     fun changeNumberEmojis(emojis: String) {
         _uiState.update { uiState.value.copy(emojis = emojis) }
     }
@@ -88,4 +91,8 @@ class GeneratorViewModel @Inject constructor(
     private fun isInputValid(emojis: Int): Boolean = isNotEmptyField(emojis.toString())
 
     private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
+
+    companion object {
+        private const val DEFAULT_ERROR_MESSAGE = "Введите количество эмоджи"
+    }
 }
