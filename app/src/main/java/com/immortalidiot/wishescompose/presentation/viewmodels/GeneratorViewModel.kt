@@ -52,24 +52,27 @@ class GeneratorViewModel @Inject constructor(
         _uiState.update { uiState.value.copy(emojis = emojis) }
     }
 
-    fun generateEmojisAndCopy(emojis: Int) {
-        if (isInputValid(emojis)) {
-           copyGeneratedWish {
-               emojiGenerator.generate(emojis)
-           }
+    fun generateEmojisAndCopy(numberEmojis: String) {
+        if (isInputValid(numberEmojis)) {
+            val emojis = castStringToInt(numberEmojis)
+            copyGeneratedWish {
+                emojiGenerator.generate(emojis)
+            }
         } else { updateStateWithError() }
     }
 
-    fun generateDayWishAndCopy(emojis: Int) {
-        if (isInputValid(emojis)) {
+    fun generateDayWishAndCopy(numberEmojis: String) {
+        if (isInputValid(numberEmojis)) {
+            val emojis = castStringToInt(numberEmojis)
             copyGeneratedWish {
                 wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
             }
         } else { updateStateWithError() }
     }
 
-    fun generateNightWishAndCopy(emojis: Int) {
-        if (isInputValid(emojis)) {
+    fun generateNightWishAndCopy(numberEmojis: String) {
+        if (isInputValid(numberEmojis)) {
+            val emojis = castStringToInt(numberEmojis)
             copyGeneratedWish {
                 wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
             }
@@ -83,7 +86,7 @@ class GeneratorViewModel @Inject constructor(
         }
     }
 
-    private fun isInputValid(emojis: Int): Boolean = isNotEmptyField(emojis.toString())
+    private fun isInputValid(emojis: String): Boolean = isNotEmptyField(emojis)
 
     private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
 

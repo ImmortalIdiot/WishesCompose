@@ -53,7 +53,7 @@ fun EmojiGeneratorScreen(
             screenViewModel.changeNumberEmojis(changedEmojis)
         },
         onGenerateClick = {
-            screenViewModel.generateEmojisAndCopy(uiState.emojis.toInt())
+            screenViewModel.generateEmojisAndCopy(uiState.emojis)
         },
         onBackButton = {
             navHostController.popBackStack(

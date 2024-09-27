@@ -52,7 +52,7 @@ fun NightWishGeneratorScreen(
             screenViewModel.changeNumberEmojis(emojis = changedEmojis)
         },
         onGenerateClick = {
-            screenViewModel.generateNightWishAndCopy(uiState.emojis.toInt())
+            screenViewModel.generateNightWishAndCopy(uiState.emojis)
         },
         onBackButton = {
             navHostController.popBackStack(

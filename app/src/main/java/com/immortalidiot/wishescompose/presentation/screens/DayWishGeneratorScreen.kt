@@ -46,7 +46,7 @@ fun DayWishGeneratorScreen(
             screenViewModel.changeNumberEmojis(changedEmojis)
         },
         onGenerateClick = {
-            screenViewModel.generateDayWishAndCopy(uiState.emojis.toInt())
+            screenViewModel.generateDayWishAndCopy(uiState.emojis)
         },
         onBackButton = {
             navHostController.popBackStack(
