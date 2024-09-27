@@ -48,32 +48,40 @@ class GeneratorViewModel @Inject constructor(
     }
 
     fun generateEmojisAndCopy(emojis: Int) {
-        viewModelScope.launch {
-            clipboardCopier.copy(
-                context = context,
-                copiedMessage = emojiGenerator.generate(emojis)
-            )
-            mutableStateFlow.update { State.Success }
+        if (isInputValid(emojis)) {
+            viewModelScope.launch {
+                clipboardCopier.copy(
+                    context = context,
+                    copiedMessage = emojiGenerator.generate(emojis)
+                )
+                mutableStateFlow.update { State.Success }
+            }
         }
     }
 
     fun generateDayWishAndCopy(emojis: Int) {
-        viewModelScope.launch {
-            clipboardCopier.copy(
-                context = context,
-                copiedMessage = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
-            )
-            mutableStateFlow.update { State.Success }
+        if (isInputValid(emojis)) {
+            viewModelScope.launch {
+                clipboardCopier.copy(
+                    context = context,
+                    copiedMessage = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
+                )
+                mutableStateFlow.update { State.Success }
+            }
         }
     }
 
     fun generateNightWishAndCopy(emojis: Int) {
-        viewModelScope.launch {
-            clipboardCopier.copy(
-                context = context,
-                copiedMessage = wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
-            )
-            mutableStateFlow.update { State.Success }
+        if (isInputValid(emojis)) {
+            viewModelScope.launch {
+                clipboardCopier.copy(
+                    context = context,
+                    copiedMessage = wishGenerator.generateNightWish() + emojiGenerator.generate(
+                        emojis
+                    )
+                )
+                mutableStateFlow.update { State.Success }
+            }
         }
     }
 
