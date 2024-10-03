@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -38,12 +41,32 @@ fun NightWishGeneratorScreen(
 
     val context = LocalContext.current
 
+    var showToast by remember { mutableStateOf(false) }
     val delayAfterClicking: Long = 2000
 
-    val toastText = when (state) {
-        is GeneratorViewModel.State.Success -> stringResource(R.string.wish_copied_hint)
-        is GeneratorViewModel.State.Error -> (state as GeneratorViewModel.State.Error).message
-        else -> null
+    LaunchedEffect(state) {
+        showToast = when (state) {
+            is GeneratorViewModel.State.Success -> true
+            is GeneratorViewModel.State.Error -> true
+            else -> { false }
+        }
+    }
+
+    if (showToast) {
+        val toastText = when (state) {
+            is GeneratorViewModel.State.Success -> stringResource(R.string.wish_copied_hint)
+            is GeneratorViewModel.State.Error -> (state as GeneratorViewModel.State.Error).message
+            else -> null
+        }
+
+        toastText?.let { message ->
+            CustomToast(context = context, toastText = message)
+
+            LaunchedEffect(Unit) {
+                delay(delayAfterClicking)
+                showToast = false
+            }
+        }
     }
 
     val headerText = when (val currentState = state) {
@@ -55,15 +78,6 @@ fun NightWishGeneratorScreen(
         wishInHeaderTextStyle
     } else {
         defaultHeaderTextStyle
-    }
-
-    toastText?.let { message ->
-        CustomToast(context = context, toastText = message)
-
-        LaunchedEffect(Unit) {
-            delay(delayAfterClicking)
-            screenViewModel.resetState()
-        }
     }
 
     PrimaryGeneratorScreen(
