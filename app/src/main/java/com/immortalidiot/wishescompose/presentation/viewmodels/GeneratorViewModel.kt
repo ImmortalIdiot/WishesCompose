@@ -28,7 +28,7 @@ class GeneratorViewModel @Inject constructor(
     @Immutable
     sealed class State {
         data object Init : State()
-        data object Success : State()
+        data class Success(val wish: String) : State()
         data class Error(val message: String) : State()
     }
 
@@ -46,7 +46,9 @@ class GeneratorViewModel @Inject constructor(
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 
-    private fun updateStateWithSuccess() = mutableStateFlow.update { State.Success }
+    private fun updateStateWithSuccess(message: String) = mutableStateFlow.update {
+        State.Success(message)
+    }
 
     fun changeNumberEmojis(emojis: String) {
         _uiState.update { uiState.value.copy(emojis = emojis) }
@@ -81,10 +83,18 @@ class GeneratorViewModel @Inject constructor(
 
     private fun copyGeneratedWish(generateWish: suspend () -> String) {
         viewModelScope.launch {
+            val generatedWishWithEmojis = generateWish()
+            val extractedWish = extractWish(generatedWishWithEmojis)
             clipboardHandler.copy(context = context, copiedMessage = generateWish())
-            updateStateWithSuccess()
+            updateStateWithSuccess(extractedWish)
         }
     }
+
+    private fun extractWish(fullText: String): String {
+        val regex = "[\\p{So}\\p{Cn}]".toRegex()
+        return fullText.split(regex).firstOrNull()?.trim() ?: fullText
+    }
+
 
     private fun isInputValid(emojis: String): Boolean = isNotEmptyField(emojis)
 
