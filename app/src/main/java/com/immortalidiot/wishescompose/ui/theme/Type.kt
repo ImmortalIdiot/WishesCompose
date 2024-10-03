@@ -52,7 +52,7 @@ private val lightTomorrowStyle = TextStyle(
 
 val modeHeaderText = mediumArchivoStyle.copy(fontSize = 30.sp)
 val buttonText = semiBoldArchivoStyle.copy(fontSize = 24.sp)
-val headerText = lightArchivoStyle.copy(
+val defaultHeaderTextStyle = lightArchivoStyle.copy(
     fontSize = 28.sp,
     color = Color.White,
     fontWeight = FontWeight.Bold

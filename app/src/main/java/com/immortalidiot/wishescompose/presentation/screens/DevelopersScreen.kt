@@ -20,7 +20,7 @@ import com.immortalidiot.wishescompose.ui.components.BackButton
 import com.immortalidiot.wishescompose.ui.components.HeaderText
 import com.immortalidiot.wishescompose.ui.components.HyperlinkedText
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
-import com.immortalidiot.wishescompose.ui.theme.headerText
+import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
 
 @Composable
 fun DevelopersScreen(
@@ -28,10 +28,8 @@ fun DevelopersScreen(
     modifier: Modifier = Modifier
 ) {
     val dimensions = LocalDimensions.current
-    val developerTypeTextStyle = headerText.copy(
-        fontSize = dimensions.developerTypeTextSize,
-        color = Color.White,
-        fontWeight = FontWeight.Bold
+    val developerTypeTextStyle = defaultHeaderTextStyle.copy(
+        fontSize = dimensions.developerTypeTextSize
     )
     val developerTextStyle = developerTypeTextStyle.copy(
         fontSize = dimensions.developerTextSize

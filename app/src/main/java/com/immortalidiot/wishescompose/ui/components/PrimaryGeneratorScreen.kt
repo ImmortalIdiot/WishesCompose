@@ -25,6 +25,7 @@ import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
 import com.immortalidiot.wishescompose.ui.theme.LocalDimensions
+import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
 import com.immortalidiot.wishescompose.ui.theme.modeHeaderText
 
 @Composable
@@ -32,9 +33,9 @@ fun PrimaryGeneratorScreen(
     mainHeaderText: String,
     inputValueChange: (String) -> Unit,
     onGenerateClick: () -> Unit,
-    headerText: String,
-    headerTextStyle: TextStyle,
     modifier: Modifier = Modifier,
+    headerText: String = stringResource(R.string.number_of_emojis),
+    headerTextStyle: TextStyle = defaultHeaderTextStyle,
     onBackButton: () -> Unit,
     inputValue: String = ""
 ) {
@@ -122,8 +123,6 @@ fun PrimaryGeneratorScreenPreview() {
     ) {
         PrimaryGeneratorScreen(
             mainHeaderText = "Заголовок",
-            headerText = stringResource(R.string.number_of_emojis),
-            headerTextStyle = com.immortalidiot.wishescompose.ui.theme.headerText,
             inputValueChange = {},
             onGenerateClick = {},
             onBackButton = {}
