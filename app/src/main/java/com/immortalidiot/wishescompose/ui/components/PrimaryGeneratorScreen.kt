@@ -87,7 +87,15 @@ fun PrimaryGeneratorScreen(
                 maxWidth = dimensions.generateWidthButton,
                 maxHeight = dimensions.heightButton,
                 text = stringResource(R.string.generate),
-                onClick = onGenerateClick
+                onClick = {
+                    onGenerateClick()
+                    if (inputValue.isNotEmpty()) {
+                        hideKeyboardAndClearFocus(
+                            keyboardController = keyboardController,
+                            focusManager = focusManager
+                        )
+                    }
+                }
             )
         }
         BackButton(
