@@ -28,7 +28,7 @@ class GeneratorViewModel @Inject constructor(
     @Immutable
     sealed class State {
         data object Init : State()
-        data class Success(val wish: String) : State()
+        data class Success(val wish: String?) : State()
         data class Error(val message: String) : State()
     }
 
@@ -46,7 +46,7 @@ class GeneratorViewModel @Inject constructor(
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 
-    private fun updateStateWithSuccess(message: String) = mutableStateFlow.update {
+    private fun updateStateWithSuccess(message: String? = null) = mutableStateFlow.update {
         State.Success(message)
     }
 
@@ -57,10 +57,17 @@ class GeneratorViewModel @Inject constructor(
     fun generateEmojisAndCopy(numberEmojis: String) {
         if (isInputValid(numberEmojis)) {
             val emojis = castStringToInt(numberEmojis)
-            copyGeneratedWish {
+            copyGeneratedEmojis {
                 emojiGenerator.generate(emojis)
             }
         } else { updateStateWithError() }
+    }
+
+    private fun copyGeneratedEmojis(generateEmojis: suspend () -> String) {
+        viewModelScope.launch {
+            clipboardHandler.copy(context = context, copiedMessage = generateEmojis())
+            updateStateWithSuccess()
+        }
     }
 
     fun generateDayWishAndCopy(numberEmojis: String) {
