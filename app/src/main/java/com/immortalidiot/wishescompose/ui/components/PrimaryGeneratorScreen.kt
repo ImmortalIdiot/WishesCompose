@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
@@ -32,8 +32,9 @@ fun PrimaryGeneratorScreen(
     mainHeaderText: String,
     inputValueChange: (String) -> Unit,
     onGenerateClick: () -> Unit,
+    headerText: String,
+    headerTextStyle: TextStyle,
     modifier: Modifier = Modifier,
-    headerText: String = stringResource(R.string.number_of_emojis),
     onBackButton: () -> Unit,
     inputValue: String = ""
 ) {
@@ -66,10 +67,7 @@ fun PrimaryGeneratorScreen(
         ) {
             HeaderText(
                 text = headerText,
-                textStyle = com.immortalidiot.wishescompose.ui.theme.headerText.copy(
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+                textStyle = headerTextStyle
             )
             GeneratorTextField(
                 value = inputValue,
@@ -124,6 +122,8 @@ fun PrimaryGeneratorScreenPreview() {
     ) {
         PrimaryGeneratorScreen(
             mainHeaderText = "Заголовок",
+            headerText = stringResource(R.string.number_of_emojis),
+            headerTextStyle = com.immortalidiot.wishescompose.ui.theme.headerText,
             inputValueChange = {},
             onGenerateClick = {},
             onBackButton = {}
