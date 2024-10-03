@@ -48,7 +48,7 @@ fun DayWishGeneratorScreen(
 
     PrimaryGeneratorScreen(
         modifier = modifier,
-        headerText = stringResource(R.string.day_wish_generator),
+        mainHeaderText = stringResource(R.string.day_wish_generator),
         inputValue = uiState.emojis,
         inputValueChange = { changedEmojis ->
             screenViewModel.changeNumberEmojis(changedEmojis)

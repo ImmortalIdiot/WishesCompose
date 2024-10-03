@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -56,7 +55,7 @@ fun EmojiGeneratorScreen(
 
     PrimaryGeneratorScreen(
         modifier = modifier,
-        headerText = stringResource(R.string.emoji_generator),
+        mainHeaderText = stringResource(R.string.emoji_generator),
         inputValue = uiState.emojis,
         inputValueChange = { changedEmojis ->
             screenViewModel.changeNumberEmojis(changedEmojis)

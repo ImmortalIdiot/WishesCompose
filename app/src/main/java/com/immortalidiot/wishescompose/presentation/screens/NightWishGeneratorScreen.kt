@@ -55,7 +55,7 @@ fun NightWishGeneratorScreen(
 
     PrimaryGeneratorScreen(
         modifier = modifier,
-        headerText = stringResource(R.string.night_wish_generator_mode),
+        mainHeaderText = stringResource(R.string.night_wish_generator_mode),
         inputValue = uiState.emojis,
         inputValueChange = { changedEmojis ->
             screenViewModel.changeNumberEmojis(emojis = changedEmojis)
