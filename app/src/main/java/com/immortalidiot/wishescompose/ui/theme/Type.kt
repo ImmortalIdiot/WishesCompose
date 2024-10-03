@@ -1,6 +1,7 @@
 package com.immortalidiot.wishescompose.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -51,5 +52,9 @@ private val lightTomorrowStyle = TextStyle(
 
 val modeHeaderText = mediumArchivoStyle.copy(fontSize = 30.sp)
 val buttonText = semiBoldArchivoStyle.copy(fontSize = 24.sp)
-val headerText = lightArchivoStyle.copy(fontSize = 28.sp)
+val headerText = lightArchivoStyle.copy(
+    fontSize = 28.sp,
+    color = Color.White,
+    fontWeight = FontWeight.Bold
+)
 val hintText = lightTomorrowStyle.copy(fontSize = 22.sp)
