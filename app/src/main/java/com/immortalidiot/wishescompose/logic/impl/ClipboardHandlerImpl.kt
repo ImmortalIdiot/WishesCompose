@@ -12,4 +12,10 @@ class ClipboardHandlerImpl @Inject constructor() : ClipboardHandler {
         val clip = ClipData.newPlainText("New record", copiedMessage)
         clipboard.setPrimaryClip(clip)
     }
+
+    override suspend fun getLatestRecord(context: Context): String {
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = clipboard.primaryClip
+        return clip?.getItemAt(0)?.coerceToText(context).toString()
+    }
 }
