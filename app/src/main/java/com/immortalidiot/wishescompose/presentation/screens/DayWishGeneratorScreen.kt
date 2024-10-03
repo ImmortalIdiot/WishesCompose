@@ -39,6 +39,15 @@ fun DayWishGeneratorScreen(
         else -> null
     }
 
+    toastText?.let { message ->
+        CustomToast(context = context, toastText = message)
+
+        LaunchedEffect(Unit) {
+            delay(delayAfterClicking)
+            screenViewModel.resetState()
+        }
+    }
+
     val headerText = when (val currentState = state) {
         is GeneratorViewModel.State.Success -> currentState.wish!!
         else -> stringResource(R.string.number_of_emojis)
@@ -48,15 +57,6 @@ fun DayWishGeneratorScreen(
         wishInHeaderTextStyle
     } else {
         defaultHeaderTextStyle
-    }
-
-    toastText?.let { message ->
-        CustomToast(context = context, toastText = message)
-
-        LaunchedEffect(Unit) {
-            delay(delayAfterClicking)
-            screenViewModel.resetState()
-        }
     }
 
     PrimaryGeneratorScreen(
