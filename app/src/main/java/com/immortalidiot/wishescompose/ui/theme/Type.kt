@@ -57,4 +57,5 @@ val defaultHeaderTextStyle = lightArchivoStyle.copy(
     color = Color.White,
     fontWeight = FontWeight.Bold
 )
+val wishInHeaderTextStyle = defaultHeaderTextStyle.copy(fontSize = 18.sp)
 val hintText = lightTomorrowStyle.copy(fontSize = 22.sp)

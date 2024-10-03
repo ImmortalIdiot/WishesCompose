@@ -16,6 +16,8 @@ import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewModel
 import com.immortalidiot.wishescompose.ui.components.CustomToast
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
+import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
+import com.immortalidiot.wishescompose.ui.theme.wishInHeaderTextStyle
 import kotlinx.coroutines.delay
 
 @Composable
@@ -37,6 +39,17 @@ fun DayWishGeneratorScreen(
         else -> null
     }
 
+    val headerText = when (val currentState = state) {
+        is GeneratorViewModel.State.Success -> currentState.wish!!
+        else -> stringResource(R.string.number_of_emojis)
+    }
+
+    val headerTextStyle = if (state is GeneratorViewModel.State.Success) {
+        wishInHeaderTextStyle
+    } else {
+        defaultHeaderTextStyle
+    }
+
     toastText?.let { message ->
         CustomToast(context = context, toastText = message)
 
@@ -49,6 +62,8 @@ fun DayWishGeneratorScreen(
     PrimaryGeneratorScreen(
         modifier = modifier,
         mainHeaderText = stringResource(R.string.day_wish_generator),
+        headerText = headerText,
+        headerTextStyle = headerTextStyle,
         inputValue = uiState.emojis,
         inputValueChange = { changedEmojis ->
             screenViewModel.changeNumberEmojis(changedEmojis)
