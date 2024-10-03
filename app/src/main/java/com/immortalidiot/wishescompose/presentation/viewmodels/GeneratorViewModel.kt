@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.immortalidiot.wishescompose.logic.ClipboardCopier
+import com.immortalidiot.wishescompose.logic.ClipboardHandler
 import com.immortalidiot.wishescompose.logic.EmojiGenerator
 import com.immortalidiot.wishescompose.logic.WishGenerator
 import com.immortalidiot.wishescompose.ui.models.GeneratorModel
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class GeneratorViewModel @Inject constructor(
     private val emojiGenerator: EmojiGenerator,
     private val wishGenerator: WishGenerator,
-    private val clipboardCopier: ClipboardCopier,
+    private val clipboardHandler: ClipboardHandler,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -81,7 +81,7 @@ class GeneratorViewModel @Inject constructor(
 
     private fun copyGeneratedWish(generateWish: suspend () -> String) {
         viewModelScope.launch {
-            clipboardCopier.copy(context = context, copiedMessage = generateWish())
+            clipboardHandler.copy(context = context, copiedMessage = generateWish())
             updateStateWithSuccess()
         }
     }
