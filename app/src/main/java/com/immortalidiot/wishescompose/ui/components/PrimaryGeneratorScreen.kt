@@ -29,10 +29,11 @@ import com.immortalidiot.wishescompose.ui.theme.modeHeaderText
 
 @Composable
 fun PrimaryGeneratorScreen(
-    headerText: String,
+    mainHeaderText: String,
     inputValueChange: (String) -> Unit,
     onGenerateClick: () -> Unit,
     modifier: Modifier = Modifier,
+    headerText: String = stringResource(R.string.number_of_emojis),
     onBackButton: () -> Unit,
     inputValue: String = ""
 ) {
@@ -56,7 +57,7 @@ fun PrimaryGeneratorScreen(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         HeaderText(
-            text = headerText,
+            text = mainHeaderText,
             textStyle = modeHeaderText.copy(color = Color.White)
         )
         Column(
@@ -64,7 +65,7 @@ fun PrimaryGeneratorScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HeaderText(
-                text = stringResource(R.string.number_of_emojis),
+                text = headerText,
                 textStyle = com.immortalidiot.wishescompose.ui.theme.headerText.copy(
                     color = Color.White,
                     fontWeight = FontWeight.Bold
@@ -122,7 +123,7 @@ fun PrimaryGeneratorScreenPreview() {
         contentAlignment = Alignment.Center
     ) {
         PrimaryGeneratorScreen(
-            headerText = "Заголовок",
+            mainHeaderText = "Заголовок",
             inputValueChange = {},
             onGenerateClick = {},
             onBackButton = {}
