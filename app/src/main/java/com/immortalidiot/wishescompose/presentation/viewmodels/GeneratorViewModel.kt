@@ -41,8 +41,6 @@ class GeneratorViewModel @Inject constructor(
 
     val uiState: StateFlow<GeneratorModel> = _uiState.asStateFlow()
 
-    fun resetState() = mutableStateFlow.update { State.Init }
-
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 
@@ -55,8 +53,8 @@ class GeneratorViewModel @Inject constructor(
     }
 
     fun generateEmojisAndCopy(numberEmojis: String) {
-        if (isInputValid(numberEmojis)) {
-            val emojis = castStringToInt(numberEmojis)
+        if (numberEmojis.isNotEmpty()) {
+            val emojis = numberEmojis.toInt()
             copyGeneratedEmojis {
                 emojiGenerator.generate(emojis)
             }
@@ -71,8 +69,8 @@ class GeneratorViewModel @Inject constructor(
     }
 
     fun generateDayWishAndCopy(numberEmojis: String) {
-        if (isInputValid(numberEmojis)) {
-            val emojis = castStringToInt(numberEmojis)
+        if (numberEmojis.isNotEmpty()) {
+            val emojis = numberEmojis.toInt()
             copyGeneratedWish {
                 wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
             }
@@ -80,8 +78,8 @@ class GeneratorViewModel @Inject constructor(
     }
 
     fun generateNightWishAndCopy(numberEmojis: String) {
-        if (isInputValid(numberEmojis)) {
-            val emojis = castStringToInt(numberEmojis)
+        if (numberEmojis.isNotEmpty()) {
+            val emojis = numberEmojis.toInt()
             copyGeneratedWish {
                 wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
             }
@@ -101,13 +99,6 @@ class GeneratorViewModel @Inject constructor(
         val regex = "[\\p{So}\\p{Cn}]".toRegex()
         return fullText.split(regex).firstOrNull()?.trim() ?: fullText
     }
-
-
-    private fun isInputValid(emojis: String): Boolean = isNotEmptyField(emojis)
-
-    private fun isNotEmptyField(string: String): Boolean = string.isNotEmpty()
-
-    private fun castStringToInt(string: String): Int = string.toInt()
 
     companion object {
         private const val DEFAULT_ERROR_MESSAGE = "Введите количество эмоджи"
