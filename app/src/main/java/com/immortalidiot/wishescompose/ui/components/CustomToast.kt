@@ -2,10 +2,8 @@ package com.immortalidiot.wishescompose.ui.components
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.runtime.Composable
 
-@Composable
-fun CustomToast(
+fun customToast(
     context: Context,
     toastText: String
 ) {
