@@ -71,12 +71,9 @@ fun NightWishGeneratorScreen(
         }
     }
 
-    val headerText = when (val currentState = state) {
-        is GeneratorViewModel.State.Success -> currentState.wish!!
-        else -> stringResource(R.string.number_of_emojis)
-    }
+    val headerText = uiState.nightWish ?: stringResource(R.string.number_of_emojis)
 
-    val headerTextStyle = if (state is GeneratorViewModel.State.Success) {
+    val headerTextStyle = if (uiState.nightWish != null) {
         wishInHeaderTextStyle
     } else {
         defaultHeaderTextStyle

@@ -68,7 +68,10 @@ class GeneratorViewModel @Inject constructor(
         if (numberEmojis.isNotEmpty()) {
             val emojis = numberEmojis.toInt()
             copyGeneratedWish {
-                wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
+                val wishWithEmojis = wishGenerator.generateDayWish() + emojiGenerator.generate(emojis)
+                val extractedWish = extractWish(wishWithEmojis)
+                updateUiStateWithWish(extractedWish, true)
+                wishWithEmojis
             }
         } else { updateStateWithError() }
     }
@@ -77,18 +80,29 @@ class GeneratorViewModel @Inject constructor(
         if (numberEmojis.isNotEmpty()) {
             val emojis = numberEmojis.toInt()
             copyGeneratedWish {
-                wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
+                val wishWithEmojis = wishGenerator.generateNightWish() + emojiGenerator.generate(emojis)
+                val extractedWish = extractWish(wishWithEmojis)
+                updateUiStateWithWish(extractedWish, false)
+                wishWithEmojis
             }
         } else { updateStateWithError() }
     }
 
     private fun copyGeneratedWish(generateWish: suspend () -> String) {
         viewModelScope.launch {
-            val generatedWishWithEmojis = generateWish()
-            val extractedWish = extractWish(generatedWishWithEmojis)
             clipboardHandler.copy(context = context, copiedMessage = generateWish())
-            updateStateWithSuccess(extractedWish)
         }
+    }
+
+    private fun updateUiStateWithWish(wish: String, isDayWish: Boolean) {
+        _uiState.update { currentState ->
+            if (isDayWish) {
+                currentState.copy(dayWish = wish)
+            } else {
+                currentState.copy(nightWish = wish)
+            }
+        }
+        updateStateWithSuccess(wish)
     }
 
     private fun extractWish(fullText: String): String {
