@@ -41,6 +41,8 @@ class GeneratorViewModel @Inject constructor(
 
     val uiState: StateFlow<GeneratorModel> = _uiState.asStateFlow()
 
+    fun resetState() = mutableStateFlow.update { State.Init }
+
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 

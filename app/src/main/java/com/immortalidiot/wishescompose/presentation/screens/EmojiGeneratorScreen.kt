@@ -1,5 +1,6 @@
 package com.immortalidiot.wishescompose.presentation.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -44,6 +45,17 @@ fun EmojiGeneratorScreen(
 
     val delayAfterClicking: Long = 2000
 
+    fun goBackPressed() {
+        screenViewModel.resetState()
+        navHostController.popBackStack(
+            route = MainScreen.ModeSelectionScreen.route,
+            inclusive = false,
+            saveState = true
+        )
+    }
+
+    BackHandler { goBackPressed() }
+
     LaunchedEffect(isToastTriggered) {
         if (isToastTriggered && !isToastShowing &&
             (state is GeneratorViewModel.State.Success || state is GeneratorViewModel.State.Error)
@@ -80,13 +92,7 @@ fun EmojiGeneratorScreen(
             isToastTriggered = true
             screenViewModel.generateEmojisAndCopy(uiState.emojis)
         },
-        onBackButton = {
-            navHostController.popBackStack(
-                route = MainScreen.ModeSelectionScreen.route,
-                inclusive = false,
-                saveState = true
-            )
-        }
+        onBackButton = { goBackPressed() }
     )
 }
 
