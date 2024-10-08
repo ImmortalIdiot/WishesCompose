@@ -90,8 +90,6 @@ fun EmojiGeneratorScreen(
     )
 }
 
-
-
 @Preview
 @Composable
 fun EmojiGeneratorScreenPreview() {
