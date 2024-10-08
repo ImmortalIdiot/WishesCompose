@@ -46,7 +46,7 @@ fun NightWishGeneratorScreen(
 
     val delayAfterClicking: Long = 2000
 
-    LaunchedEffect(state) {
+    LaunchedEffect(isToastTriggered) {
         if (isToastTriggered && !isToastShowing &&
             (state is GeneratorViewModel.State.Success || state is GeneratorViewModel.State.Error)
         ) {
@@ -66,6 +66,7 @@ fun NightWishGeneratorScreen(
                 customToast(context, message)
                 delay(delayAfterClicking)
                 isToastShowing = false
+                isToastTriggered = false
             }
         }
     }
