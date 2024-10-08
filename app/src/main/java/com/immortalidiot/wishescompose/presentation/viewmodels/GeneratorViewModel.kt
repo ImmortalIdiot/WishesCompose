@@ -32,13 +32,9 @@ class GeneratorViewModel @Inject constructor(
         data class Error(val message: String) : State()
     }
 
-    var mutableStateFlow = MutableStateFlow<State>(State.Init)
-        private set
+    val mutableStateFlow = MutableStateFlow<State>(State.Init)
 
-    private val _uiState = MutableStateFlow(
-        GeneratorModel(emojis = String())
-    )
-
+    private val _uiState = MutableStateFlow(GeneratorModel(emojis = String()))
     val uiState: StateFlow<GeneratorModel> = _uiState.asStateFlow()
 
     fun resetState() = mutableStateFlow.update { State.Init }
@@ -46,13 +42,11 @@ class GeneratorViewModel @Inject constructor(
     private fun updateStateWithError(errorMessage: String = DEFAULT_ERROR_MESSAGE) =
         mutableStateFlow.update { State.Error(errorMessage) }
 
-    private fun updateStateWithSuccess(message: String? = null) = mutableStateFlow.update {
-        State.Success(message)
-    }
+    private fun updateStateWithSuccess(message: String? = null) =
+        mutableStateFlow.update { State.Success(message) }
 
-    fun changeNumberEmojis(emojis: String) {
+    fun changeNumberEmojis(emojis: String) =
         _uiState.update { uiState.value.copy(emojis = emojis) }
-    }
 
     fun generateEmojisAndCopy(numberEmojis: String) {
         if (numberEmojis.isNotEmpty()) {
