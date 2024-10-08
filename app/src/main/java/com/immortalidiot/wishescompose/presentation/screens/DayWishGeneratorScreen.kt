@@ -17,8 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewModel
-import com.immortalidiot.wishescompose.ui.components.CustomToast
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
+import com.immortalidiot.wishescompose.ui.components.customToast
 import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
 import com.immortalidiot.wishescompose.ui.theme.wishInHeaderTextStyle
 import kotlinx.coroutines.delay
@@ -34,30 +34,32 @@ fun DayWishGeneratorScreen(
 
     val context = LocalContext.current
 
-    var showToast by remember { mutableStateOf(false) }
+    var isToastTriggered by remember { mutableStateOf(false) }
+    var isToastShowing by remember { mutableStateOf(false) }
+
     val delayAfterClicking: Long = 2000
 
-    LaunchedEffect(state) {
-        showToast = when (state) {
-            is GeneratorViewModel.State.Success -> true
-            is GeneratorViewModel.State.Error -> true
-            else -> { false }
-        }
-    }
+    LaunchedEffect(isToastTriggered) {
+        if (isToastTriggered && !isToastShowing &&
+            (state is GeneratorViewModel.State.Success || state is GeneratorViewModel.State.Error)
+        ) {
+            isToastShowing = true
 
-    if (showToast) {
-        val toastText = when (state) {
-            is GeneratorViewModel.State.Success -> stringResource(R.string.wish_copied_hint)
-            is GeneratorViewModel.State.Error -> (state as GeneratorViewModel.State.Error).message
-            else -> null
-        }
+            val toastText = when (state) {
+                is GeneratorViewModel.State.Success -> {
+                    context.getString(R.string.wish_copied_hint)
+                }
+                is GeneratorViewModel.State.Error -> {
+                    (state as GeneratorViewModel.State.Error).message
+                }
+                else -> { null }
+            }
 
-        toastText?.let { message ->
-            CustomToast(context = context, toastText = message)
-
-            LaunchedEffect(Unit) {
+            toastText?.let { message ->
+                customToast(context, message)
                 delay(delayAfterClicking)
-                showToast = false
+                isToastShowing = false
+                isToastTriggered = false
             }
         }
     }
@@ -83,6 +85,7 @@ fun DayWishGeneratorScreen(
             screenViewModel.changeNumberEmojis(changedEmojis)
         },
         onGenerateClick = {
+            isToastTriggered = true
             screenViewModel.generateDayWishAndCopy(uiState.emojis)
         },
         onBackButton = {
