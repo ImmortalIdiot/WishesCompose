@@ -28,7 +28,9 @@ import com.immortalidiot.wishescompose.providers.showMessage
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
+import com.immortalidiot.wishescompose.ui.theme.Constants
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun EmojiGeneratorScreen(
@@ -40,12 +42,12 @@ fun EmojiGeneratorScreen(
     val uiState by screenViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
+
     val snackbarHostState = LocalSnackbarHostState.current
+    val snackbarDuration: Long = Constants.SNACKBAR_DURATION
 
     var isToastTriggered by remember { mutableStateOf(false) }
     var isToastShowing by remember { mutableStateOf(false) }
-
-    val delayAfterClicking: Long = 2000
 
     fun goBackPressed() {
         screenViewModel.resetState()
@@ -75,8 +77,11 @@ fun EmojiGeneratorScreen(
             }
 
             toastText?.let { message ->
-                snackbarHostState.showMessage(message)
-                delay(delayAfterClicking)
+                val job = launch {
+                    snackbarHostState.showMessage(message)
+                }
+                delay(snackbarDuration)
+                job.cancel()
                 isToastShowing = false
                 isToastTriggered = false
             }

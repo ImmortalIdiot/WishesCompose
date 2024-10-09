@@ -20,9 +20,11 @@ import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewMode
 import com.immortalidiot.wishescompose.providers.LocalSnackbarHostState
 import com.immortalidiot.wishescompose.providers.showMessage
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
+import com.immortalidiot.wishescompose.ui.theme.Constants
 import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
 import com.immortalidiot.wishescompose.ui.theme.wishInHeaderTextStyle
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun DayWishGeneratorScreen(
@@ -34,12 +36,12 @@ fun DayWishGeneratorScreen(
     val uiState by screenViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
+
     val snackbarHostState = LocalSnackbarHostState.current
+    val snackbarDuration: Long = Constants.SNACKBAR_DURATION
 
     var isToastTriggered by remember { mutableStateOf(false) }
     var isToastShowing by remember { mutableStateOf(false) }
-
-    val delayAfterClicking: Long = 5000
 
     LaunchedEffect(isToastTriggered) {
         if (isToastTriggered && !isToastShowing &&
@@ -58,8 +60,11 @@ fun DayWishGeneratorScreen(
             }
 
             toastText?.let { message ->
-                snackbarHostState.showMessage(message)
-                delay(delayAfterClicking)
+                val job = launch {
+                    snackbarHostState.showMessage(message)
+                }
+                delay(snackbarDuration)
+                job.cancel()
                 isToastShowing = false
                 isToastTriggered = false
             }

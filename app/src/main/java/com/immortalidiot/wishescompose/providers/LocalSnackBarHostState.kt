@@ -12,7 +12,7 @@ val LocalSnackbarHostState =
 suspend fun SnackbarHostState.showMessage(message: String) {
     showSnackbar(
         message = message,
-        withDismissAction = true,
-        duration = SnackbarDuration.Short
+        withDismissAction = false,
+        duration = SnackbarDuration.Indefinite
     )
 }
