@@ -12,7 +12,6 @@
     <string name="number_of_emojis">Количество эмоджи</string>
     <string name="min_and_max_hint">1 – 2000</string>
     <string name="generate">Сгенерировать</string>
-    <string name="refresh_button_text">Обновить</string>
 
     <string name="developer">Разработчик</string>
     <string name="Immortal_Idiot"><a href="Immortal_Idiot">Immortal_Idiot</a></string>
