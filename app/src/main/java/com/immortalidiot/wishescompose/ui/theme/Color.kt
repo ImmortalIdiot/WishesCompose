@@ -19,3 +19,5 @@ val BackgroundStart = Color(0xFF0A1330)
 val BackgroundEnd = Color(0xFF234CB8)
 
 val HintColor = Color(0xFF929292)
+
+val SnackbarContainerColor = Color(0xFF222224)
