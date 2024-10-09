@@ -112,8 +112,7 @@ fun PrimaryGeneratorScreen(
 
         CustomSnackbar(
             snackbarHostState = snackbarHostState,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
 }
