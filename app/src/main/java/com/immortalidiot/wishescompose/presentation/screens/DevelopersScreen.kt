@@ -47,20 +47,10 @@ fun DevelopersScreen(
                 text = stringResource(R.string.developer),
                 textStyle = developerTypeTextStyle
             )
+            Spacer(modifier = modifier.height(dimensions.verticalTinyPadding))
             HyperlinkedText(
                 linkText = stringResource(R.string.Immortal_Idiot),
                 username = stringResource(R.string.Immortal_Idiot),
-                textStyle = developerTextStyle,
-                modifier = modifier
-            )
-            Spacer(modifier = modifier.height(dimensions.verticalNormalPadding))
-            HeaderText(
-                text = stringResource(R.string.designer),
-                textStyle = developerTypeTextStyle
-            )
-            HyperlinkedText(
-                linkText = stringResource(R.string.kipish_080),
-                username = stringResource(R.string.kipish_080),
                 textStyle = developerTextStyle,
                 modifier = modifier
             )
