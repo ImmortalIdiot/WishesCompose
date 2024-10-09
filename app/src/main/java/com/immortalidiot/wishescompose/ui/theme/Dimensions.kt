@@ -29,7 +29,7 @@ data class Dimensions(
 
     val developerTypeTextSize: TextUnit = 28.sp,
     val developerTextSize: TextUnit = 24.sp,
-    val snackBarTextSize: TextUnit = 16.sp
+    val snackBarTextSize: TextUnit = 13.sp
 )
 
 data class DimensionsTest(

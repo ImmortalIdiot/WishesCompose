@@ -31,7 +31,7 @@ fun CustomSnackbar(
     val dimensions = LocalDimensions.current
 
     Box(
-        modifier = modifier.fillMaxHeight(0.75f)
+        modifier = modifier.fillMaxHeight(0.8f)
     ) {
         SnackbarHost(
             hostState = snackbarHostState,
@@ -49,9 +49,7 @@ fun CustomSnackbar(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.wish_icon),
-                        modifier = Modifier
-                            .padding(end = dimensions.betweenIconAndTextPadding)
-                            .size(dimensions.iconSize),
+                        modifier = Modifier.size(dimensions.iconSize),
                         contentDescription = "Application icon",
                         tint = Color.Unspecified
                     )
@@ -59,7 +57,8 @@ fun CustomSnackbar(
                     Text(
                         text = snackbarData.visuals.message,
                         color = Color.White,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        fontSize = dimensions.snackBarTextSize
                     )
                     Spacer(modifier = Modifier.weight(1f))
                 }
