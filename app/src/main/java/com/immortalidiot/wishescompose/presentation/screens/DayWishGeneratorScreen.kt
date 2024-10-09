@@ -17,8 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewModel
+import com.immortalidiot.wishescompose.providers.LocalSnackbarHostState
+import com.immortalidiot.wishescompose.providers.showMessage
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
-import com.immortalidiot.wishescompose.ui.components.customToast
 import com.immortalidiot.wishescompose.ui.theme.defaultHeaderTextStyle
 import com.immortalidiot.wishescompose.ui.theme.wishInHeaderTextStyle
 import kotlinx.coroutines.delay
@@ -33,11 +34,12 @@ fun DayWishGeneratorScreen(
     val uiState by screenViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
+    val snackbarHostState = LocalSnackbarHostState.current
 
     var isToastTriggered by remember { mutableStateOf(false) }
     var isToastShowing by remember { mutableStateOf(false) }
 
-    val delayAfterClicking: Long = 2000
+    val delayAfterClicking: Long = 5000
 
     LaunchedEffect(isToastTriggered) {
         if (isToastTriggered && !isToastShowing &&
@@ -56,7 +58,7 @@ fun DayWishGeneratorScreen(
             }
 
             toastText?.let { message ->
-                customToast(context, message)
+                snackbarHostState.showMessage(message)
                 delay(delayAfterClicking)
                 isToastShowing = false
                 isToastTriggered = false
@@ -92,6 +94,7 @@ fun DayWishGeneratorScreen(
                 saveState = true
             )
         },
+        snackbarHostState = snackbarHostState
     )
 }
 

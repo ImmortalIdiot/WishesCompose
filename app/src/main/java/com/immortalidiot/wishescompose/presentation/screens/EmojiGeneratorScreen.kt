@@ -23,8 +23,9 @@ import androidx.navigation.compose.rememberNavController
 import com.immortalidiot.wishescompose.R
 import com.immortalidiot.wishescompose.navigation.MainScreen
 import com.immortalidiot.wishescompose.presentation.viewmodels.GeneratorViewModel
+import com.immortalidiot.wishescompose.providers.LocalSnackbarHostState
+import com.immortalidiot.wishescompose.providers.showMessage
 import com.immortalidiot.wishescompose.ui.components.PrimaryGeneratorScreen
-import com.immortalidiot.wishescompose.ui.components.customToast
 import com.immortalidiot.wishescompose.ui.theme.BackgroundEnd
 import com.immortalidiot.wishescompose.ui.theme.BackgroundStart
 import kotlinx.coroutines.delay
@@ -39,6 +40,7 @@ fun EmojiGeneratorScreen(
     val uiState by screenViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
+    val snackbarHostState = LocalSnackbarHostState.current
 
     var isToastTriggered by remember { mutableStateOf(false) }
     var isToastShowing by remember { mutableStateOf(false) }
@@ -73,7 +75,7 @@ fun EmojiGeneratorScreen(
             }
 
             toastText?.let { message ->
-                customToast(context, message)
+                snackbarHostState.showMessage(message)
                 delay(delayAfterClicking)
                 isToastShowing = false
                 isToastTriggered = false
@@ -92,7 +94,8 @@ fun EmojiGeneratorScreen(
             isToastTriggered = true
             screenViewModel.generateEmojisAndCopy(uiState.emojis)
         },
-        onBackButton = { goBackPressed() }
+        onBackButton = { goBackPressed() },
+        snackbarHostState = snackbarHostState
     )
 }
 
