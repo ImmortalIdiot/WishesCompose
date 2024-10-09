@@ -17,6 +17,7 @@ data class Dimensions(
     val widthBackButton: Dp = 128.dp,
     val generateWidthButton: Dp = 220.dp,
 
+    val verticalTinyPadding: Dp = 16.dp,
     val verticalSmallPadding: Dp = 24.dp,
     val verticalNormalPadding: Dp = 48.dp,
     val verticalBigPadding: Dp = 80.dp,
