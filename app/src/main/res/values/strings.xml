@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wishes (Compose)</string>
+    <string name="app_name">Wishes</string>
 
     <string name="selection_mode">Выберите режим</string>
     <string name="day_wish_generator">Дневное пожелание</string>
