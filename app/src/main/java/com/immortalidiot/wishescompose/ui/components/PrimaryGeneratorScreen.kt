@@ -46,7 +46,7 @@ fun PrimaryGeneratorScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
 
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
             .padding(vertical = dimensions.verticalBigPadding)
@@ -57,57 +57,67 @@ fun PrimaryGeneratorScreen(
                         focusManager = focusManager
                     )
                 }
-            },
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+            }
     ) {
-        HeaderText(
-            text = mainHeaderText,
-            textStyle = modeHeaderText.copy(color = Color.White)
-        )
         Column(
-            verticalArrangement = Arrangement.spacedBy(dimensions.verticalSmallPadding),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderText(
-                text = headerText,
-                textStyle = headerTextStyle
+                text = mainHeaderText,
+                textStyle = modeHeaderText.copy(color = Color.White)
             )
-            GeneratorTextField(
-                value = inputValue,
-                onValueChange = inputValueChange,
-                keyboardActions = KeyboardActions(
-                    onDone = {
-                        hideKeyboardAndClearFocus(
-                            keyboardController = keyboardController,
-                            focusManager = focusManager
-                        )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(dimensions.verticalSmallPadding),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                HeaderText(
+                    text = headerText,
+                    textStyle = headerTextStyle
+                )
+                GeneratorTextField(
+                    value = inputValue,
+                    onValueChange = inputValueChange,
+                    keyboardActions = KeyboardActions(
+                        onDone = {
+                            hideKeyboardAndClearFocus(
+                                keyboardController = keyboardController,
+                                focusManager = focusManager
+                            )
+                        }
+                    )
+                )
+                PrimaryButton(
+                    modifier = modifier,
+                    maxWidth = dimensions.generateWidthButton,
+                    maxHeight = dimensions.heightButton,
+                    text = stringResource(R.string.generate),
+                    onClick = {
+                        onGenerateClick()
+                        if (inputValue.isNotEmpty()) {
+                            hideKeyboardAndClearFocus(
+                                keyboardController = keyboardController,
+                                focusManager = focusManager
+                            )
+                        }
                     }
                 )
-            )
-            PrimaryButton(
-                modifier = modifier,
-                maxWidth = dimensions.generateWidthButton,
-                maxHeight = dimensions.heightButton,
-                text = stringResource(R.string.generate),
-                onClick = {
-                    onGenerateClick()
-                    if (inputValue.isNotEmpty()) {
-                        hideKeyboardAndClearFocus(
-                            keyboardController = keyboardController,
-                            focusManager = focusManager
-                        )
-                    }
-                }
+            }
+            BackButton(
+                modifier = Modifier.padding(bottom = dimensions.verticalSmallPadding),
+                onClick = onBackButton
             )
         }
-        BackButton(
-            modifier = modifier,
-            onClick = onBackButton
+
+        CustomSnackbar(
+            snackbarHostState = snackbarHostState,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
         )
-        CustomSnackbar(snackbarHostState = snackbarHostState)
     }
 }
+
 
 private fun hideKeyboardAndClearFocus(
     keyboardController: SoftwareKeyboardController?,
