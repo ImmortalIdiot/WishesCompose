@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
@@ -33,6 +35,7 @@ fun PrimaryGeneratorScreen(
     mainHeaderText: String,
     inputValueChange: (String) -> Unit,
     onGenerateClick: () -> Unit,
+    snackbarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
     headerText: String = stringResource(R.string.number_of_emojis),
     headerTextStyle: TextStyle = defaultHeaderTextStyle,
@@ -102,6 +105,7 @@ fun PrimaryGeneratorScreen(
             modifier = modifier,
             onClick = onBackButton
         )
+        CustomSnackbar(snackbarHostState = snackbarHostState)
     }
 }
 
@@ -133,7 +137,8 @@ fun PrimaryGeneratorScreenPreview() {
             mainHeaderText = "Заголовок",
             inputValueChange = {},
             onGenerateClick = {},
-            onBackButton = {}
+            onBackButton = {},
+            snackbarHostState = remember { SnackbarHostState() }
         )
     }
 }
