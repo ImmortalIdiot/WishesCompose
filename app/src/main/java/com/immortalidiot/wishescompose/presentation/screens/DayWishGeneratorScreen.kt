@@ -40,14 +40,14 @@ fun DayWishGeneratorScreen(
     val snackbarHostState = LocalSnackbarHostState.current
     val snackbarDuration: Long = Constants.SNACKBAR_DURATION
 
-    var isToastTriggered by remember { mutableStateOf(false) }
-    var isToastShowing by remember { mutableStateOf(false) }
+    var isSnackbarTriggered by remember { mutableStateOf(false) }
+    var isSnackbarShowing by remember { mutableStateOf(false) }
 
-    LaunchedEffect(isToastTriggered) {
-        if (isToastTriggered && !isToastShowing &&
+    LaunchedEffect(isSnackbarTriggered) {
+        if (isSnackbarTriggered && !isSnackbarShowing &&
             (state is GeneratorViewModel.State.Success || state is GeneratorViewModel.State.Error)
         ) {
-            isToastShowing = true
+            isSnackbarShowing = true
 
             val toastText = when (state) {
                 is GeneratorViewModel.State.Success -> {
@@ -65,8 +65,8 @@ fun DayWishGeneratorScreen(
                 }
                 delay(snackbarDuration)
                 job.cancel()
-                isToastShowing = false
-                isToastTriggered = false
+                isSnackbarShowing = false
+                isSnackbarTriggered = false
             }
         }
     }
@@ -89,7 +89,7 @@ fun DayWishGeneratorScreen(
             screenViewModel.changeNumberEmojis(changedEmojis)
         },
         onGenerateClick = {
-            isToastTriggered = true
+            isSnackbarTriggered = true
             screenViewModel.generateDayWishAndCopy(uiState.emojis)
         },
         onBackButton = {

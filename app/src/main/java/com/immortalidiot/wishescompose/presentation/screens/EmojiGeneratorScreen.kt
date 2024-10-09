@@ -46,8 +46,8 @@ fun EmojiGeneratorScreen(
     val snackbarHostState = LocalSnackbarHostState.current
     val snackbarDuration: Long = Constants.SNACKBAR_DURATION
 
-    var isToastTriggered by remember { mutableStateOf(false) }
-    var isToastShowing by remember { mutableStateOf(false) }
+    var isSnackbarTriggered by remember { mutableStateOf(false) }
+    var isSnackbarShowing by remember { mutableStateOf(false) }
 
     fun goBackPressed() {
         screenViewModel.resetState()
@@ -60,11 +60,11 @@ fun EmojiGeneratorScreen(
 
     BackHandler { goBackPressed() }
 
-    LaunchedEffect(isToastTriggered) {
-        if (isToastTriggered && !isToastShowing &&
+    LaunchedEffect(isSnackbarTriggered) {
+        if (isSnackbarTriggered && !isSnackbarShowing &&
             (state is GeneratorViewModel.State.Success || state is GeneratorViewModel.State.Error)
         ) {
-            isToastShowing = true
+            isSnackbarShowing = true
 
             val toastText = when (state) {
                 is GeneratorViewModel.State.Success -> {
@@ -82,8 +82,8 @@ fun EmojiGeneratorScreen(
                 }
                 delay(snackbarDuration)
                 job.cancel()
-                isToastShowing = false
-                isToastTriggered = false
+                isSnackbarShowing = false
+                isSnackbarTriggered = false
             }
         }
     }
@@ -96,7 +96,7 @@ fun EmojiGeneratorScreen(
             screenViewModel.changeNumberEmojis(changedEmojis)
         },
         onGenerateClick = {
-            isToastTriggered = true
+            isSnackbarTriggered = true
             screenViewModel.generateEmojisAndCopy(uiState.emojis)
         },
         onBackButton = { goBackPressed() },
